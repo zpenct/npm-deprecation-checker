@@ -1,0 +1,19 @@
+# Source files (dist/ is what gets published)
+src/
+tests/
+
+# Config files
+.github/
+.vscode/
+tsconfig.json
+jest.config.js
+
+# Docs (README.md IS published)
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+
+# Misc
+.ndc-cache/
+coverage/
+*.log
+.env*
