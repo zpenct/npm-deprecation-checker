@@ -4,6 +4,11 @@
 
 **Scan your `package.json` for deprecated, outdated, or risky npm packages — before they break your project.**
 
+[![npm version](https://img.shields.io/npm/v/npm-deprecation-checker?color=crimson&style=flat-square)](https://www.npmjs.com/package/npm-deprecation-checker)
+[![npm downloads](https://img.shields.io/npm/dm/npm-deprecation-checker?style=flat-square)](https://www.npmjs.com/package/npm-deprecation-checker)
+[![CI](https://github.com/YOUR_USERNAME/npm-deprecation-checker/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/npm-deprecation-checker/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square)](https://nodejs.org)
 
 Works with **npm · pnpm · yarn · bun**
 
@@ -122,7 +127,7 @@ console.log(json);
 
 ---
 
-## Options
+## 🧾 Options
 
 | Flag | Description | Default |
 |------|-------------|---------|
@@ -177,6 +182,54 @@ Example shape:
   "errorCount": 0,
   "results": []
 }
+```
+
+---
+
+## CI Integration
+
+### GitHub Actions
+
+```yaml
+name: Dependency Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check-dependencies:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check deprecated dependencies
+        run: npx npm-deprecation-checker --strict --no-color
+```
+
+### GitLab CI
+
+```yaml
+check-deprecated-deps:
+  image: node:20
+  script:
+    - npx npm-deprecation-checker --strict --no-color
+```
+
+### Husky pre-commit hook
+
+```bash
+npm install --save-dev husky
+npx husky init
+echo "npx npm-deprecation-checker --strict" > .husky/pre-commit
+chmod +x .husky/pre-commit
 ```
 
 ---
@@ -270,4 +323,3 @@ This tool reads `package.json`, so it works across the standard JavaScript packa
 | yarn | ✅ |
 | bun | ✅ |
 
----
