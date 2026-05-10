@@ -1,5 +1,5 @@
 {
-  "name": "lib-deprecation-checker",
+  "name": "npm-deprecation-checker",
   "version": "0.1.0",
   "description": "Scan your package.json for deprecated, outdated, or risky npm packages",
   "main": "dist/index.js",
